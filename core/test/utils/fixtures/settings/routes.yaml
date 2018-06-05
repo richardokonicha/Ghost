@@ -1,0 +1,12 @@
+routes:
+
+collections:
+  /:
+    permalink: '{globals.permalinks}'
+    template:
+      - home
+      - index
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/
