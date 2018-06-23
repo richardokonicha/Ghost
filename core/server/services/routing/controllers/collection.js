@@ -2,6 +2,7 @@ const _ = require('lodash'),
     debug = require('ghost-ignition').debug('services:routing:controllers:collection'),
     common = require('../../../lib/common'),
     security = require('../../../lib/security'),
+    urlService = require('../../../services/url'),
     themes = require('../../themes'),
     filters = require('../../../filters'),
     helpers = require('../helpers');
@@ -45,6 +46,13 @@ module.exports = function collectionController(req, res, next) {
                 }));
             }
 
+            // CASE: does this post belong to this collection?
+            result.posts = _.filter(result.posts, (post) => {
+                if (urlService.owns(res.locals.routerOptions.identifier, post.url)) {
+                    return post;
+                }
+            });
+
             // Format data 1
             // @TODO: figure out if this can be removed, it's supposed to ensure that absolutely URLs get generated
             // correctly for the various objects, but I believe it doesn't work and a different approach is needed.
@@ -61,7 +69,7 @@ module.exports = function collectionController(req, res, next) {
                     result.posts = posts;
                     return result;
                 })
-                .then(helpers.renderCollection(req, res));
+                .then(helpers.renderEntries(req, res));
         })
         .catch(helpers.handleError(next));
 };
