@@ -33,9 +33,6 @@
                 "featured": {
                     "type": "boolean"
                 },
-                "page": {
-                    "type": "boolean"
-                },
                 "status": {
                     "type": "string",
                     "enum": ["published", "draft", "scheduled"]
@@ -113,6 +110,15 @@
                     "$ref": "#/definitions/post-tags"
                 },
                 "id": {
+                    "strip": true
+                },
+                "author": {
+                    "strip": true
+                },
+                "author_id": {
+                    "strip": true
+                },
+                "page": {
                     "strip": true
                 },
                 "created_at": {

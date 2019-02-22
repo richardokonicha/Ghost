@@ -143,7 +143,6 @@ describe('Unit: v2/utils/validators/input/posts', function () {
                 mobiledoc: [123, new Date()],
                 feature_image: [123, new Date(), 'random words'],
                 featured: [123, new Date(), 'abc'],
-                page: [123, new Date(), 'abc'],
                 status: [123, new Date(), 'abc'],
                 locale: [123, new Date(), _.repeat('a', 7)],
                 visibility: [123, new Date(), 'abc'],
