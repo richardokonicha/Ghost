@@ -77,21 +77,15 @@ export default function mockPosts(server) {
         limit = +limit || 15;
 
         let statusFilter = extractFilterParam('status', filter);
-        let pageFilter = extractFilterParam('page', filter);
 
         let collection = posts.all().filter((post) => {
             let matchesStatus = true;
-            let matchesPage = true;
 
             if (!isEmpty(statusFilter)) {
                 matchesStatus = statusFilter.includes(post.status);
             }
 
-            if (!isEmpty(pageFilter)) {
-                matchesPage = pageFilter.includes(post.page);
-            }
-
-            return matchesStatus && matchesPage;
+            return matchesStatus;
         });
 
         return paginateModelCollection('posts', collection, page, limit);
