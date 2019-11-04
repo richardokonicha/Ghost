@@ -1,25 +1,6 @@
-const common = require('../../../../lib/common');
 const commands = require('../../../schema').commands;
 
-const createLog = type => msg => common.logging[type](msg);
-
-function createColumnMigration({table, column, dbIsInCorrectState, operation, operationVerb}) {
-    return function columnMigrations({transacting}) {
-        return transacting.schema.hasColumn(table, column)
-            .then(dbIsInCorrectState)
-            .then((isInCorrectState) => {
-                const log = createLog(isInCorrectState ? 'warn' : 'info');
-
-                log(`${operationVerb} ${table}.${column}`);
-
-                if (!isInCorrectState) {
-                    return operation(table, column, transacting);
-                }
-            });
-    };
-}
-
-module.exports.up = createColumnMigration({
+module.exports.up = commands.createColumnMigration({
     table: 'posts',
     column: 'send_email_when_published',
     dbIsInCorrectState(columnExists) {
@@ -29,7 +10,7 @@ module.exports.up = createColumnMigration({
     operationVerb: 'Adding'
 });
 
-module.exports.down = createColumnMigration({
+module.exports.down = commands.createColumnMigration({
     table: 'posts',
     column: 'send_email_when_published',
     dbIsInCorrectState(columnExists) {
