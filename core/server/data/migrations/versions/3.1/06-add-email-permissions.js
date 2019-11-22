@@ -3,7 +3,7 @@ const utils = require('../../../schema/fixtures/utils');
 const permissions = require('../../../../services/permissions');
 const logging = require('../../../../lib/common/logging');
 
-const resources = ['emails'];
+const resources = ['email'];
 const _private = {};
 
 _private.getPermissions = function getPermissions(resource) {
