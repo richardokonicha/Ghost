@@ -15,13 +15,11 @@ export default AuthenticatedRoute.extend(CurrentUserSettings, {
 
     model() {
         return RSVP.hash({
-            settings: this.settings.reload(),
-            themes: this.store.findAll('theme')
+            settings: this.settings.reload()
         });
     },
 
-    setupController(controller) {
-        controller.set('themes', this.store.peekAll('theme'));
+    setupController() {
         this.controller.send('reset');
     },
 
@@ -49,10 +47,6 @@ export default AuthenticatedRoute.extend(CurrentUserSettings, {
                 controller.send('toggleLeaveSettingsModal', transition);
                 return;
             }
-        },
-
-        activateTheme(theme) {
-            return this.controller.send('activateTheme', theme);
         }
     },
 
