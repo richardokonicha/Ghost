@@ -1,0 +1,20 @@
+<div class="modal-body modal-preview-email-content gh-pe-mobile-container h-auto overflow-auto">
+    <div class="gh-pe-mobile-bezel">
+        <div class="gh-pe-mobile-screen">
+            <iframe class="gh-post-preview-iframe" src={{@post.previewUrl}}></iframe>
+        </div>
+    </div>
+</div>
+<div class="gh-post-preview-browser-footer">
+    <span class="mr3 mt1 mb1 nowrap fw6 f8 darkgrey">Share preview privately</span>
+    <div class="gh-post-preview-url-container">
+        <span class="db truncate w-90">{{@post.previewUrl}}</span>
+        <button type="button" {{on "click" (perform this.copyPreviewUrl)}} class="gh-post-preview-copy">
+            {{#if this.copyPreviewUrl.isRunning}}
+                {{svg-jar "check-circle" class="w3 v-mid mr2 stroke-darkgrey"}} Copied
+            {{else}}
+                <span data-tooltip="Copy">{{svg-jar "copy" class="w4 v-mid fill-darkgrey"}}</span>
+            {{/if}}
+        </button>
+    </div>
+</div>
