@@ -13,7 +13,6 @@ export default class MembersEmail extends Component {
     @service ghostPaths;
     @service ajax;
     @service settings;
-    @service newsletters;
 
     replyAddresses = null;
     recipientsSelectValue = null;
@@ -62,16 +61,6 @@ export default class MembersEmail extends Component {
             domain: this.get('settings.mailgunDomain') || '',
             baseUrl: this.get('settings.mailgunBaseUrl') || ''
         };
-    }
-
-    @computed('newsletters.newsletters.@each.status')
-    get activeNewsletterCount() {
-        return this.newsletters.newsletters.filter(n => n.status === 'active').length;
-    }
-
-    @computed('newsletters.newsletters.@each.status')
-    get archivedNewsletterCount() {
-        return this.newsletters.newsletters.filter(n => n.status === 'archived').length;
     }
 
     init() {
@@ -195,16 +184,6 @@ export default class MembersEmail extends Component {
     @action
     setDefaultEmailRecipientsFilter(filter) {
         this.settings.set('editorDefaultEmailRecipientsFilter', filter);
-    }
-
-    @action
-    archiveNewsletter(id) {
-        this.newsletters.archive(id);
-    }
-
-    @action
-    addNewsletter() {
-        this.newsletters.add();
     }
 
     @(task(function* () {
