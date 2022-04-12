@@ -1,7 +1,7 @@
 import AppContext from '../../AppContext';
 import CloseButton from '../common/CloseButton';
 import BackButton from '../common/BackButton';
-import {useContext} from 'react';
+import {useContext, useState} from 'react';
 import Switch from '../common/Switch';
 import {getSiteNewsletters} from '../../utils/helpers';
 import ActionButton from '../common/ActionButton';
@@ -20,10 +20,8 @@ function AccountHeader() {
     );
 }
 
-function NewsletterPrefSection({newsletter}) {
-    const {onAction, member} = useContext(AppContext);
-    let newsletters = [...(member.newsletters || [])];
-    const isChecked = newsletters.some((d) => {
+function NewsletterPrefSection({newsletter, subscribedNewsletters, setSubscribedNewsletters}) {
+    const isChecked = subscribedNewsletters.some((d) => {
         return d.id === newsletter?.id;
     });
     return (
@@ -34,45 +32,53 @@ function NewsletterPrefSection({newsletter}) {
             </div>
             <div>
                 <Switch id={newsletter.id} onToggle={(e, checked) => {
-                    onAction('showPopupNotification', {
-                        action: 'updated:success',
-                        message: `${newsletter.name} newsletter preference updated.`
-                    });
+                    let updatedNewsletters = [];
                     if (!checked) {
-                        newsletters = newsletters.filter((d) => {
+                        updatedNewsletters = subscribedNewsletters.filter((d) => {
                             return d.id !== newsletter.id;
                         });
                     } else {
-                        newsletters = newsletters.filter((d) => {
+                        updatedNewsletters = subscribedNewsletters.filter((d) => {
                             return d.id !== newsletter.id;
                         }).concat(newsletter);
                     }
-                    onAction('updateNewsletterPreference', {newsletters});
+                    setSubscribedNewsletters(updatedNewsletters);
                 }} checked={isChecked} />
             </div>
         </section>
     );
 }
 
-function NewsletterPrefs() {
+function NewsletterPrefs({subscribedNewsletters, setSubscribedNewsletters}) {
     const {site} = useContext(AppContext);
     const newsletters = getSiteNewsletters({site});
     return newsletters.map((newsletter) => {
         return (
-            <NewsletterPrefSection key={newsletter?.id} newsletter={newsletter} />
+            <NewsletterPrefSection
+                key={newsletter?.id}
+                newsletter={newsletter}
+                subscribedNewsletters={subscribedNewsletters}
+                setSubscribedNewsletters={setSubscribedNewsletters}
+            />
         );
     });
 }
 
 export default function AccountEmailPage() {
-    const {brandColor} = useContext(AppContext);
+    const {brandColor, member, onAction} = useContext(AppContext);
+    const defaultSubscribedNewsletters = [...(member.newsletters || [])];
+    const [subscribedNewsletters, setSubscribedNewsletters] = useState(defaultSubscribedNewsletters);
+
     return (
         <div className='gh-portal-content with-footer'>
             <CloseButton />
             <AccountHeader />
             <div className='gh-portal-section'>
                 <div className='gh-portal-list'>
-                    <NewsletterPrefs />
+                    <NewsletterPrefs
+                        subscribedNewsletters={subscribedNewsletters}
+                        setSubscribedNewsletters={setSubscribedNewsletters}
+                    />
                 </div>
             </div>
             <footer className='gh-portal-action-footer'>
@@ -80,7 +86,18 @@ export default function AccountEmailPage() {
                     <div style={{marginBottom: '12px'}}>
                         <ActionButton
                             isRunning={false}
-                            onClick={(e) => {}}
+                            onClick={(e) => {
+                                let newsletters = subscribedNewsletters.map((d) => {
+                                    return {
+                                        id: d.id
+                                    };
+                                });
+                                onAction('showPopupNotification', {
+                                    action: 'updated:success',
+                                    message: `Newsletter preference updated.`
+                                });
+                                onAction('updateNewsletterPreference', {newsletters});
+                            }}
                             disabled={false}
                             brandColor={brandColor}
                             label='Update'
