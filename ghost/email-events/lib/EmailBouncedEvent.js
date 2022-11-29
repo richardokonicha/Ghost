@@ -1,7 +1,3 @@
-/**
- * @typedef {import('bson-objectid').default} ObjectID
- */
-
 module.exports = class EmailBouncedEvent {
     /**
      * @readonly
@@ -11,15 +7,21 @@ module.exports = class EmailBouncedEvent {
 
     /**
      * @readonly
-     * @type {ObjectID}
+     * @type {string}
      */
     memberId;
 
     /**
      * @readonly
-     * @type {ObjectID}
+     * @type {string}
      */
     emailId;
+
+    /**
+     * @readonly
+     * @type {string}
+     */
+    emailRecipientId;
 
     /**
      * @readonly
@@ -30,10 +32,11 @@ module.exports = class EmailBouncedEvent {
     /**
      * @private
      */
-    constructor({email, memberId, emailId, timestamp}) {
-        this.email = email;
+    constructor({email, memberId, emailId, emailRecipientId, timestamp}) {
         this.memberId = memberId;
         this.emailId = emailId;
+        this.email = email;
+        this.emailRecipientId = emailRecipientId;
         this.timestamp = timestamp;
     }
 
