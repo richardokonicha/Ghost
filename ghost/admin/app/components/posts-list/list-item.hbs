@@ -51,6 +51,9 @@
                 {{#if @post.lexical}}
                     <span class="gh-lexical-indicator">L</span>
                 {{/if}}
+                {{#if @post.featured}}
+                    <span class="gh-lexical-indicator">★</span>
+                {{/if}}
             </h3>
             {{#unless @hideAuthor }}
                 <p class="gh-content-entry-meta">
