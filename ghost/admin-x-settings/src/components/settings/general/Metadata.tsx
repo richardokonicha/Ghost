@@ -15,7 +15,7 @@ const Metadata: React.FC = () => {
         handleStateChange
     } = useSettingGroup();
 
-    const [metaTitle, metaDescription] = getSettingValues(['meta_title', 'meta_description']) as string[];
+    const [metaTitle, metaDescription, siteTitle, siteDescription] = getSettingValues(['meta_title', 'meta_description', 'title', 'description']) as string[];
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         updateSetting('meta_title', e.target.value);
@@ -36,14 +36,14 @@ const Metadata: React.FC = () => {
             <TextField
                 hint="Recommended: 70 characters"
                 inputRef={focusRef}
-                placeholder="[TBD: site title]"
+                placeholder={siteTitle}
                 title="Meta title"
                 value={metaTitle}
                 onChange={handleTitleChange}
             />
             <TextField
                 hint="Recommended: 156 characters"
-                placeholder="[TBD: site description]"
+                placeholder={siteDescription}
                 title="Meta description"
                 value={metaDescription}
                 onChange={handleDescriptionChange}
