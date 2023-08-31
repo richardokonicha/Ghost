@@ -1,10 +1,8 @@
 import AddRecommendationModal from './AddRecommendationModal';
-import Avatar from '../../../../admin-x-ds/global/Avatar';
-import Form from '../../../../admin-x-ds/global/form/Form';
 import Modal from '../../../../admin-x-ds/global/modal/Modal';
 import NiceModal, {useModal} from '@ebay/nice-modal-react';
 import React from 'react';
-import TextArea from '../../../../admin-x-ds/global/form/TextArea';
+import RecommendationReasonForm from './RecommendationReasonForm';
 import useForm from '../../../../hooks/useForm';
 import useRouting from '../../../../hooks/useRouting';
 import {EditOrAddRecommendation, useAddRecommendation} from '../../../../api/recommendations';
@@ -88,25 +86,7 @@ const AddRecommendationModalConfirm: React.FC<AddRecommendationModalProps> = ({r
             }
         }}
     >
-        <Form
-            marginBottom={false}
-            marginTop
-        >
-            <div className='mb-4 flex items-center gap-3 rounded-sm border border-grey-300 p-3'>
-                {(recommendation.favicon || recommendation.featured_image) && <Avatar image={recommendation.favicon ?? recommendation.featured_image!} labelColor='white' />}
-                <div className={`flex grow flex-col`}>
-                    <span className='mb-0.5 font-medium'>{recommendation.title}</span>
-                    <span className='text-xs leading-snug text-grey-700'>{recommendation.url}</span>
-                </div>
-            </div>
-            <TextArea
-                clearBg={true}
-                rows={3}
-                title="Reason for recommending"
-                value={formState.reason ?? ''}
-                onChange={e => updateForm(state => ({...state, reason: e.target.value}))}
-            />
-        </Form>
+        <RecommendationReasonForm formState={formState} updateForm={updateForm} />
     </Modal>;
 };
 
