@@ -2,6 +2,7 @@ import adminXViteConfig from '@tryghost/admin-x-framework/vite';
 import pkg from './package.json';
 import {resolve} from 'path';
 
+
 // https://vitejs.dev/config/
 export default (function viteConfig() {
     return adminXViteConfig({
