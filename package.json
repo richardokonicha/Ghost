@@ -144,6 +144,7 @@
     "query:members": "cd ghost/core/core/server/data/tinybird/scripts && ./query-members.sh",
     "generate:analytics": "cd ghost/core && node core/server/data/tinybird/scripts/analytics-generator.js",
     "vercel-build": "node scripts/build-vercel.js",
-    "test-vercel": "node scripts/test-vercel-setup.js"
+    "test-vercel": "node scripts/test-vercel-setup.js",
+    "deploy-vercel": "node scripts/deploy-vercel.js"
   }
 }
