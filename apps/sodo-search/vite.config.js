@@ -7,6 +7,8 @@ import svgrPlugin from 'vite-plugin-svgr';
 
 import pkg from './package.json';
 import {SUPPORTED_LOCALES} from '@tryghost/i18n';
+
+
 export default defineConfig((config) => {
     const outputFileName = pkg.name[0] === '@' ? pkg.name.slice(pkg.name.indexOf('/') + 1) : pkg.name;
 

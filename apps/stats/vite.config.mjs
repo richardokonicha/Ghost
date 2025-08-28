@@ -3,6 +3,7 @@ import pkg from './package.json';
 import svgr from 'vite-plugin-svgr';
 import {resolve} from 'path';
 
+
 export default (function viteConfig() {
     return adminXViteConfig({
         packageName: pkg.name,
