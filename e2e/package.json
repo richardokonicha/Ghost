@@ -7,9 +7,9 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
-    "dev": "tsc --watch --preserveWatchOutput --sourceMap",
-    "build": "yarn build:ts",
-    "build:ts": "tsc",
+    "dev": "node init && tsc --watch --preserveWatchOutput --sourceMap",
+    "build": "node init && yarn build:ts",
+    "build:ts": "node init && tsc",
     "prepare": "tsc",
     "test": "playwright test --project=main",
     "test:parallel": "playwright test --project=main --workers=8",
@@ -31,6 +31,6 @@
     "dotenv": "16.6.1"
   },
   "dependencies": {
-     "@tryghost/logging": "2.4.23"
+    "@tryghost/logging": "2.4.23"
   }
 }

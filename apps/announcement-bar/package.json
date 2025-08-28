@@ -22,9 +22,9 @@
     "react-dom": "17.0.2"
   },
   "scripts": {
-    "dev": "concurrently \"vite preview -l silent\" \"yarn build:watch\"",
-    "build": "vite build",
-    "build:watch": "vite build --watch",
+    "dev": "node init && concurrently \"vite preview -l silent\" \"yarn build:watch\"",
+    "build": "node init && vite build",
+    "build:watch": "node init && vite build --watch",
     "test": "vitest run",
     "test:ci": "yarn test --coverage",
     "test:unit": "yarn test:ci",
