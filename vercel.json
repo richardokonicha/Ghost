@@ -1,24 +1,6 @@
 {
   "version": 2,
   "name": "ghost-cms",
-  "builds": [
-    {
-      "src": "api/ghost.js",
-      "use": "@vercel/node",
-      "config": {
-        "maxLambdaSize": "50mb",
-        "includeFiles": [
-          "ghost/core/**",
-          "ghost/admin/dist/**",
-          "ghost/i18n/**"
-        ]
-      }
-    },
-    {
-      "src": "ghost/admin/dist/**",
-      "use": "@vercel/static"
-    }
-  ],
   "routes": [
     {
       "src": "/ghost/assets/(.*)",
