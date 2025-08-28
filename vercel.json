@@ -1,0 +1,67 @@
+{
+  "version": 2,
+  "name": "ghost-cms",
+  "builds": [
+    {
+      "src": "api/ghost.js",
+      "use": "@vercel/node",
+      "config": {
+        "maxLambdaSize": "50mb",
+        "includeFiles": [
+          "ghost/core/**",
+          "ghost/admin/dist/**",
+          "ghost/i18n/**"
+        ]
+      }
+    },
+    {
+      "src": "ghost/admin/dist/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/ghost/assets/(.*)",
+      "dest": "/ghost/admin/dist/assets/$1"
+    },
+    {
+      "src": "/ghost/(.*)",
+      "dest": "/api/ghost"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/ghost/core/core/frontend/public/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/ghost"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "database__client": "mysql2",
+    "database__connection__host": "@database_host",
+    "database__connection__user": "@database_user", 
+    "database__connection__password": "@database_password",
+    "database__connection__database": "@database_name",
+    "database__connection__ssl__rejectUnauthorized": "false",
+    "storage__active": "cloudinary",
+    "storage__cloudinary__cloud_name": "@cloudinary_cloud_name",
+    "storage__cloudinary__api_key": "@cloudinary_api_key",
+    "storage__cloudinary__api_secret": "@cloudinary_api_secret",
+    "url": "@ghost_url",
+    "admin__url": "@admin_url",
+    "mail__transport": "SMTP",
+    "mail__options__service": "@mail_service",
+    "mail__options__auth__user": "@mail_user",
+    "mail__options__auth__pass": "@mail_password",
+    "mail__from": "@mail_from"
+  },
+  "functions": {
+    "api/ghost.js": {
+      "memory": 3008,
+      "maxDuration": 30
+    }
+  },
+  "regions": ["iad1"]
+}
