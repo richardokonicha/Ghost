@@ -16,9 +16,9 @@
     "test": "tests"
   },
   "scripts": {
-    "dev": "ember serve",
-    "build": "ember build --environment=production --silent",
-    "build:dev": "yarn build --environment=development",
+    "dev": "node init && ember serve",
+    "build": "node init && ember build --environment=production --silent",
+    "build:dev": "node init && yarn build --environment=development",
     "test:unit": "true",
     "test": "ember exam --split 2 --parallel",
     "lint:js": "eslint . --cache",

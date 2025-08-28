@@ -63,13 +63,11 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
 
 # IDE
 .idea/
 *.iml
 *.sublime-*
-.vscode/*
 !.vscode/launch.json
 !.vscode/settings.json
 
@@ -194,3 +192,7 @@ yalc.lock
 /e2e/test-results
 /e2e/build
 /e2e/playwright
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+config.bat

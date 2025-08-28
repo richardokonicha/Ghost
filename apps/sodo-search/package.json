@@ -22,9 +22,9 @@
     "react-dom": "17.0.2"
   },
   "scripts": {
-    "dev": "concurrently \"vite preview -l silent\" \"yarn build:watch\" \"yarn tailwind\"",
-    "build": "vite build && yarn tailwind:base",
-    "build:watch": "vite build --watch",
+    "dev": "node init && concurrently \"vite preview -l silent\" \"yarn build:watch\" \"yarn tailwind\"",
+    "build": "node init && vite build && yarn tailwind:base",
+    "build:watch": "node init && vite build --watch",
     "tailwind": "yarn tailwind:base --watch ",
     "tailwind:base": "npx tailwindcss -i ./src/index.css -o ./umd/main.css --minify",
     "test": "vitest run",
