@@ -7,6 +7,17 @@
     <img src="https://user-images.githubusercontent.com/65487235/157849205-aa24152c-4610-4d7d-b752-3a8c4f9319e6.png" alt="Ghost" width="200px">
   </a>
 </p>
+
+<p align="center">
+  <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frichardokonicha%2FGhost&env=DATABASE_HOST,DATABASE_USER,DATABASE_PASSWORD,DATABASE_NAME,CLOUDINARY_CLOUD_NAME,CLOUDINARY_API_KEY,CLOUDINARY_API_SECRET,GHOST_URL&envDescription=Environment%20variables%20required%20for%20Ghost%20deployment&envLink=https%3A%2F%2Fgithub.com%2Frichardokonicha%2FGhost%2Fblob%2Fmain%2FVERCEL_DEPLOYMENT.md">
+    <img src="https://vercel.com/button" alt="Deploy with Vercel" />
+  </a>
+</p>
+
+<p align="center">
+  <strong>🚀 Deploy Ghost CMS to Vercel in 1 click!</strong><br>
+  <em>Complete setup guide: <a href="QUICK_DEPLOY.md">QUICK_DEPLOY.md</a></em>
+</p>
 &nbsp;
 
 <p align="center">
