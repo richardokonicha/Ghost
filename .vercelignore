@@ -1,0 +1,59 @@
+# Dependencies
+node_modules/
+.yarn/
+.cache/
+yarn.lock
+package-lock.json
+
+# Development files
+.git/
+.github/
+.vscode/
+.env*
+*.log
+
+# Test files
+test/
+tests/
+*.test.js
+*.spec.js
+e2e/
+
+# Build artifacts and temporary files
+ghost/admin/node_modules/
+ghost/admin/tmp/
+ghost/admin/.tmp/
+ghost/core/content/logs/
+ghost/core/content/data/
+ghost/core/content/images/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation
+README.md
+SECURITY.md
+LICENSE
+
+# Docker files
+.docker/
+.dockerignore
+compose.yml
+patches/
+
+# Nx cache
+.nx/
+nx.json
+
+# Development scripts
+.github/scripts/
+
+# Editor configs
+.editorconfig
+.cursor
+
+# Git files
+.gitattributes
+.gitignore
+.gitmodules
