@@ -15,10 +15,10 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "dev": "concurrently \"yarn preview --host -l silent\" \"yarn build:watch\"",
-    "dev:test": "vite build && vite preview --port 7175",
-    "build": "vite build",
-    "build:watch": "vite build --watch",
+    "dev": "node init && concurrently \"yarn preview --host -l silent\" \"yarn build:watch\"",
+    "dev:test": "node init && vite build && vite preview --port 7175",
+    "build": "node init && vite build",
+    "build:watch": "node init && vite build --watch",
     "preview": "vite preview",
     "test": "yarn test:unit && yarn test:e2e",
     "test:unit": "vitest run --coverage",
